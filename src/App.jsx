@@ -1,15 +1,20 @@
 import GlobalStyles from "./styles/GlobalStyles";
 
 import Heading from "./ui/Heading";
+import Row from "./ui/Row";
 
 function App() {
   return (
     <>
       <GlobalStyles />
 
-      <Heading as="h1">The Wild Oasis</Heading>
+      <Row>
+        <Heading as="h1">The Wild Oasis</Heading>
+      </Row>
 
-      <Heading as="h2">The Wild Oasis</Heading>
+      <div>
+        <Heading as="h2">The Wild Oasis</Heading>
+      </div>
     </>
   );
 }
