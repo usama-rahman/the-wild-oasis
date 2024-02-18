@@ -1,17 +1,15 @@
-import styled from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
 
-const H1 = styled.h1`
-  font-size: 30px;
-  font-weight: 600;
-  background-color: purple;
-`;
+import Heading from "./ui/Heading";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <H1>The Wild Oasis</H1>
+
+      <Heading as="h1">The Wild Oasis</Heading>
+
+      <Heading as="h2">The Wild Oasis</Heading>
     </>
   );
 }
