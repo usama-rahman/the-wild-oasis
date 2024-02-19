@@ -1,7 +1,8 @@
-import { formatDistance, parseISO } from 'date-fns';
-import { differenceInDays } from 'date-fns/esm';
+import { formatDistance, differenceInDays, parseISO } from "date-fns";
+// import { differenceInDays } from "date-fns/esm";
 
 // We want to make this function work for both Date objects and strings (which come from Supabase)
+
 export const subtractDates = (dateStr1, dateStr2) =>
   differenceInDays(parseISO(String(dateStr1)), parseISO(String(dateStr2)));
 
@@ -9,8 +10,8 @@ export const formatDistanceFromNow = (dateStr) =>
   formatDistance(parseISO(dateStr), new Date(), {
     addSuffix: true,
   })
-    .replace('about ', '')
-    .replace('in', 'In');
+    .replace("about ", "")
+    .replace("in", "In");
 
 // Supabase needs an ISO date string. However, that string will be different on every render because the MS or SEC have changed, which isn't good. So we use this trick to remove any time
 export const getToday = function (options = {}) {
@@ -25,6 +26,43 @@ export const getToday = function (options = {}) {
 };
 
 export const formatCurrency = (value) =>
-  new Intl.NumberFormat('en', { style: 'currency', currency: 'USD' }).format(
+  new Intl.NumberFormat("en", { style: "currency", currency: "USD" }).format(
     value
   );
+
+/*
+
+import { formatDistance, parseISO, differenceInDays } from "date-fns";
+
+export const getDaysDifference = (date1, date2) => {
+  const parsedDate1 = parseISO(String(date1));
+  const parsedDate2 = parseISO(String(date2));
+  if (isNaN(parsedDate1) || isNaN(parsedDate2)) {
+    throw new Error("Invalid date format");
+  }
+  return differenceInDays(parsedDate1, parsedDate2);
+};
+
+export const formatDistanceFromNow = (dateStr) => {
+  const parsedDate = parseISO(dateStr);
+  return formatDistance(parsedDate, new Date(), {
+    addSuffix: true,
+  })
+    .replace("about ", "")
+    .replace("in", "In");
+};
+
+export const getToday = ({ end = false } = {}) => {
+  const today = new Date();
+  if (end) {
+    today.setUTCHours(23, 59, 59, 999);
+  } else {
+    today.setUTCHours(0, 0, 0, 0);
+  }
+  return today.toISOString();
+};
+
+export const formatCurrency = (value, currency = "USD") =>
+  new Intl.NumberFormat("en", { style: "currency", currency }).format(value);
+
+  */
